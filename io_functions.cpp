@@ -4,7 +4,14 @@ namespace iof
     bool isInt(std::string nval)
     {
         char *endptr;
-        std::strtol(nval.c_str(), &endptr, 10);
+        try
+        {
+            std::strtol(nval.c_str(), &endptr, 10);
+        }
+        catch(const std::exception& e)
+        {
+            return false;
+        }
         return (*endptr == '\0');
     }
 
