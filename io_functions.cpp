@@ -2,10 +2,10 @@
 namespace iof
 {
 
-    void read_matrix_from_console(int** matrix, int* n) 
+    void read_matrix_from_console(int **matrix, int *n)
     {
         std::cout << "Введите размерность квадратной матрицы: ";
-        while (!(std::cin >> *n) || *n <= 0) 
+        while (!(std::cin >> *n) || *n <= 0)
         {
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -14,13 +14,13 @@ namespace iof
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
         matrix = new int*[*n];
-        for (int i = 0; i < *n; i++) 
+        for (int i = 0; i < *n; i++)
         {
-            (matrix)[i] = new int[*n];
+            matrix[i] = new int[*n];
             std::cout << "Введите элементы " << i + 1 << "-й строки матрицы:" << std::endl;
-            for (int j = 0; j < *n; j++) 
+            for (int j = 0; j < *n; j++)
             {
-                while (!(std::cin >> *(matrix + i)[j])) 
+                while (!(std::cin >> matrix[i][j]))
                 {
                     std::cin.clear();
                     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -29,29 +29,30 @@ namespace iof
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             }
         }
+        std::cout << "1" << std::endl;
     }
 
-    void read_matrix_from_file( int** matrix, int* n) 
+    void read_matrix_from_file(int **matrix, int *n)
     {
         std::ifstream file("input.txt");
-        if (!file) 
+        if (!file)
         {
             throw std::runtime_error("Не удалось открыть файл ");
         }
 
         file >> *n;
-        if (!file || *n <= 0) 
+        if (!file || *n <= 0)
         {
             throw std::runtime_error("Некорректный формат данных в файле. Исправьте содержимое файла и перезапустите программу.");
         }
 
-        matrix = new int*[*n];
-        for (int i = 0; i < *n; i++) 
+        matrix = new int*[*n]; 
+        for (int i = 0; i < *n; i++)
         {
-            (matrix)[i] = new int[*n];
-            for (int j = 0; j < *n; j++) 
+            matrix[i] = new int[*n];
+            for (int j = 0; j < *n; j++)
             {
-                if (!(file >> *(matrix + i)[j])) 
+                if (!(file >> matrix[i][j]))
                 {
                     throw std::runtime_error("Некорректный формат данных в файле. Исправьте содержимое файла и перезапустите программу.");
                 }
@@ -59,7 +60,7 @@ namespace iof
         }
     }
 
-    void write_results_to_console(int* resultA, int* resultB, int* resultC, int* resultD , int* n)
+    void write_results_to_console(int *resultA, int *resultB, int *resultC, int *resultD, int *n)
     {
         using namespace std;
 
@@ -81,7 +82,7 @@ namespace iof
         cout << endl;
     }
 
-    void wirte_results_to_file(int* resultA, int* resultB, int* resultC, int* resultD , int* n)
+    void wirte_results_to_file(int *resultA, int *resultB, int *resultC, int *resultD, int *n)
     {
         using namespace std;
 

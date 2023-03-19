@@ -7,8 +7,11 @@
 #include <stdexcept>
 #include <limits>
 
-void read_matrix_from_console(int** matrix, int* n);
+namespace iof
+{
+    void read_matrix_from_console(int **matrix, int *n);
 
-void read_matrix_from_file( int** matrix, int* n);
+    void read_matrix_from_file(int **matrix, int *n);
+}
 
 #endif
