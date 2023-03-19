@@ -1,5 +1,4 @@
 #include "my_functions.h"
-
 namespace myf
 {
 
