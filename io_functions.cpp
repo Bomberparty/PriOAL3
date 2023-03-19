@@ -2,7 +2,7 @@
 namespace iof
 {
 
-    void read_matrix_from_console(int **matrix, int *n)
+    int **read_matrix_from_console(int *n)
     {
         std::cout << "Введите размерность квадратной матрицы: ";
         while (!(std::cin >> *n) || *n <= 0)
@@ -13,7 +13,7 @@ namespace iof
         }
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-        matrix = new int*[*n];
+        int **matrix = new int*[*n];
         for (int i = 0; i < *n; i++)
         {
             matrix[i] = new int[*n];
@@ -29,10 +29,11 @@ namespace iof
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             }
         }
-        std::cout << "1" << std::endl;
+
+        return matrix;
     }
 
-    void read_matrix_from_file(int **matrix, int *n)
+    int **read_matrix_from_file(int *n)
     {
         std::ifstream file("input.txt");
         if (!file)
@@ -46,7 +47,7 @@ namespace iof
             throw std::runtime_error("Некорректный формат данных в файле. Исправьте содержимое файла и перезапустите программу.");
         }
 
-        matrix = new int*[*n]; 
+        int **matrix = new int*[*n]; 
         for (int i = 0; i < *n; i++)
         {
             matrix[i] = new int[*n];
@@ -58,6 +59,8 @@ namespace iof
                 }
             }
         }
+
+        return matrix;
     }
 
     void write_results_to_console(int *resultA, int *resultB, int *resultC, int *resultD, int *n)

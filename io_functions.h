@@ -9,9 +9,13 @@
 
 namespace iof
 {
-    void read_matrix_from_console(int **matrix, int *n);
+    int **read_matrix_from_console(int *n);
 
-    void read_matrix_from_file(int **matrix, int *n);
+    int **read_matrix_from_file(int *n);
+
+    void write_results_to_console(int *resultA, int *resultB, int *resultC, int *resultD, int *n);
+
+    void wirte_results_to_file(int *resultA, int *resultB, int *resultC, int *resultD, int *n);
 }
 
 #endif

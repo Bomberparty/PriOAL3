@@ -8,8 +8,8 @@ int main()
         using namespace std;
 
         int *n;
-        
-        int** arr;
+
+        int **arr;
 
         bool isreloadable = true;
 
@@ -19,11 +19,11 @@ int main()
         getline(cin, *input_method);
         if (*input_method == "файл" || *input_method == "Файл")
         {
-            iof::read_matrix_from_file(arr, n);
+            arr = iof::read_matrix_from_file(n);
             isreloadable = false;
         }
         else if (*input_method == "консоль" || *input_method == "Консоль")
-            iof::read_matrix_from_console(arr, n);
+            arr = iof::read_matrix_from_console(n);
 
         delete input_method;
 
