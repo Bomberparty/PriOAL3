@@ -97,19 +97,19 @@ namespace iof
         using namespace std;
 
         cout << "А) ";
-        for (int i = 0; i <= *n; i++)
+        for (int i = 0; i < *n; i++)
             cout << resultA[i] << " ";
         cout << endl;
         cout << "Б) ";
-        for (int i = 0; i <= *n; i++)
+        for (int i = 0; i < *n; i++)
             cout << resultB[i] << " ";
         cout << endl;
         cout << "В) ";
-        for (int i = 0; i <= *n; i++)
+        for (int i = 0; i < *n; i++)
             cout << resultC[i] << " ";
         cout << endl;
         cout << "Г) ";
-        for (int i = 0; i <= *n; i++)
+        for (int i = 0; i < *n; i++)
             cout << resultD[i] << " ";
         cout << endl;
     }
