@@ -9,6 +9,8 @@
 
 namespace iof
 {
+    bool isInt(std::string nval);
+
     int **read_matrix_from_console(int *n);
 
     int **read_matrix_from_file(int *n);
