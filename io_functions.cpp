@@ -1,6 +1,12 @@
 #include "io_functions.h"
 namespace iof
 {
+    bool isInt(std::string nval)
+    {
+        char *endptr;
+        std::strtol(nval.c_str(), &endptr, 10);
+        return (*endptr == '\0');
+    }
 
     int **read_matrix_from_console(int *n)
     {
@@ -17,16 +23,24 @@ namespace iof
         for (int i = 0; i < *n; i++)
         {
             matrix[i] = new int[*n];
-            std::cout << "Введите элементы " << i + 1 << "-й строки матрицы:" << std::endl;
+            std::cout << "Введите элементы " << i + 1 << "-й строки матрицы (После каждого значения переносите строку): " << std::endl;
             for (int j = 0; j < *n; j++)
             {
-                while (!(std::cin >> matrix[i][j]))
+                while (true)
                 {
-                    std::cin.clear();
-                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                    std::cout << "Некорректный ввод. Введите целое число: ";
+                    std::string * nval = new std::string;
+                    std::getline(std::cin, *nval);
+                    if(isInt(*nval))
+                    {
+                        matrix[i][j] = stoi(*nval);
+                        break;
+                    }
+                    else
+                    {
+                        std::cout << "Введено неверное значение! Повторите ввод." << std::endl;
+                        continue;   
+                    }
                 }
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             }
         }
 
@@ -38,7 +52,7 @@ namespace iof
         std::ifstream file("input.txt");
         if (!file)
         {
-            throw std::runtime_error("Не удалось открыть файл ");
+            throw std::runtime_error("Не удалось открыть файл. Создайте файл и перезапустите программу.");
         }
 
         file >> *n;
@@ -53,10 +67,18 @@ namespace iof
             matrix[i] = new int[*n];
             for (int j = 0; j < *n; j++)
             {
-                if (!(file >> matrix[i][j]))
+                std::string * nval = new std::string;
+                std::getline(file, *nval);
+                if(isInt(*nval))
                 {
-                    throw std::runtime_error("Некорректный формат данных в файле. Исправьте содержимое файла и перезапустите программу.");
+                    matrix[i][j] = stoi(*nval);
+                    break;
                 }
+                else
+                {
+                    throw std::runtime_error("Некорректный формат данных в файле. Исправьте содержимое файла и перезапустите программу."); 
+                }
+                delete nval;
             }
         }
 

@@ -13,46 +13,66 @@ int main()
 
         bool isreloadable = true;
 
-        string *input_method = new string;
+        string * input_method = new string;
 
-        cout << "Какой метод ввода вы предпочитаете? [файл/консоль]: ";
-        getline(cin, *input_method);
-        if (*input_method == "файл" || *input_method == "Файл")
+        bool correct_input = false;
+        while (!correct_input)
         {
-            arr = iof::read_matrix_from_file(n);
-            isreloadable = false;
+            cout << "Какой метод ввода вы предпочитаете? [файл/консоль]: ";
+            getline(cin, *input_method);
+            if (*input_method == "файл" || *input_method == "Файл")
+            {
+                correct_input = true;
+                arr = iof::read_matrix_from_file(n);
+                isreloadable = false;
+            }
+            else if (*input_method == "консоль" || *input_method == "Консоль")
+            {
+                correct_input = true;    
+                arr = iof::read_matrix_from_console(n);
+            }
+            else
+                cout << "Обеспечьте корректный ввод." << endl;
         }
-        else if (*input_method == "консоль" || *input_method == "Консоль")
-            arr = iof::read_matrix_from_console(n);
 
         delete input_method;
-
         int *resultA = myf::compute_min_elements(arr, *n);
         int *resultB = myf::find_first_positive(arr, *n);
         int *resultC = myf::find_sum_after_negative(arr, *n);
         int *resultD = myf::find_sum_before_negative(arr, *n);
 
-        cout << "Какой метод вывода вы предпочитаете? [файл/консоль]: ";
-
         string *output_method = new string;
 
-        getline(cin, *output_method);
+        correct_input = false;
+        while (!correct_input)
+        {
+            cout << "Какой метод вывода вы предпочитаете? [файл/консоль]: ";
+            getline(cin, *output_method);
 
-        if (*input_method == "файл" || *input_method == "Файл")
-            iof::wirte_results_to_file(resultA, resultB, resultC, resultD, n);
-        else if (*input_method == "консоль" || *input_method == "Консоль")
-            iof::write_results_to_console(resultA, resultB, resultC, resultD, n);
+            if (*output_method == "файл" || *output_method == "Файл")
+            {
+                iof::wirte_results_to_file(resultA, resultB, resultC, resultD, n);
+                correct_input = true;
+            }
+            else if (*output_method == "консоль" || *output_method == "Консоль")
+            {
+                correct_input = true;
+                iof::write_results_to_console(resultA, resultB, resultC, resultD, n);
+            }
+            else
+                cout << "Обеспечьте корректный ввод." << endl;
+        }
 
         delete output_method;
 
         if (isreloadable)
         {
-            cout << "Желаете повторить процесс? [Да/Нет]: ";
-            string *answer = new string;
-            getline(cin, *answer);
             bool correct_ans = false;
             while (!correct_ans)
             {
+                cout << "Желаете повторить процесс? [Да/Нет]: ";
+                string *answer = new string;
+                getline(cin, *answer);
                 if (*answer == "Да" || *answer == "да")
                 {
                     correct_ans = true;
