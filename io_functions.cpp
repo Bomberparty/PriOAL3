@@ -121,19 +121,19 @@ namespace iof
         ofstream output("output.txt");
 
         output << "А) ";
-        for (int i = 0; i <= *n; i++)
+        for (int i = 0; i < *n; i++)
             output << resultA[i] << " ";
         output << endl;
         output << "Б) ";
-        for (int i = 0; i <= *n; i++)
+        for (int i = 0; i < *n; i++)
             output << resultB[i] << " ";
         output << endl;
         output << "В) ";
-        for (int i = 0; i <= *n; i++)
+        for (int i = 0; i < *n; i++)
             output << resultC[i] << " ";
         output << endl;
         output << "Г) ";
-        for (int i = 0; i <= *n; i++)
+        for (int i = 0; i < *n; i++)
             output << resultD[i] << " ";
         output << endl;
 
