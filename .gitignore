@@ -33,3 +33,9 @@
 
 #vscode
 *.vscode/
+
+#misc
+input.txt
+output.txt
+a
+a.exe

@@ -51,13 +51,13 @@ int main()
 
             if (*output_method == "файл" || *output_method == "Файл")
             {
-                iof::wirte_results_to_file(resultA, resultB, resultC, resultD, n);
+                iof::wirte_results_to_file(arr, resultA, resultB, resultC, resultD, n);
                 correct_input = true;
             }
             else if (*output_method == "консоль" || *output_method == "Консоль")
             {
                 correct_input = true;
-                iof::write_results_to_console(resultA, resultB, resultC, resultD, n);
+                iof::write_results_to_console(arr, resultA, resultB, resultC, resultD, n);
             }
             else
                 cout << "Обеспечьте корректный ввод." << endl;
@@ -80,18 +80,16 @@ int main()
                 }
                 else if (*answer == "Нет" || *answer == "нет")
                 {
+                    correct_ans = true;
                     for(int i = 0; i < *n; i++)
                     {
-                        delete[] arr;
+                        delete[] arr[i];
                     }
                     delete[] arr;
-                    delete n;
-                    delete resultA;
-                    delete resultB;
-                    delete resultC;
-                    delete resultD;
-                    delete answer;
-                    correct_ans = true;
+                    delete[] resultA;
+                    delete[] resultB;
+                    delete[] resultC;
+                    delete[] resultD;
                     return 0;
                 }
                 else

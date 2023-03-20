@@ -39,8 +39,16 @@ namespace iof
                     std::getline(std::cin, *nval);
                     if(isInt(*nval))
                     {
-                        matrix[i][j] = stoi(*nval);
-                        break;
+                        try
+                        {
+                            matrix[i][j] = stoi(*nval);
+                            break;
+                        }
+                        catch(const std::exception& e)
+                        {
+                            std::cout << "Введено некорректное значение! Повторите ввод." << std::endl;
+                            continue;   
+                        }
                     }
                     else
                     {
@@ -78,8 +86,16 @@ namespace iof
                 std::getline(file, *nval);
                 if(isInt(*nval))
                 {
-                    matrix[i][j] = stoi(*nval);
-                    break;
+                    try
+                    {
+                        matrix[i][j] = stoi(*nval);
+                        break;
+                    }
+                    catch(const std::exception& e)
+                    {
+                        std::cout << "Введено некорректное значение! Повторите ввод." << std::endl;
+                        continue;   
+                    }
                 }
                 else
                 {
@@ -92,9 +108,19 @@ namespace iof
         return matrix;
     }
 
-    void write_results_to_console(int *resultA, int *resultB, int *resultC, int *resultD, int *n)
+    void write_results_to_console(int **arr, int *resultA, int *resultB, int *resultC, int *resultD, int *n)
     {
         using namespace std;
+
+        cout << "Исходная матрица:" << endl << endl;
+        for (int i = 0; i < *n; i++)
+        {
+            for (int j = 0; j < *n; j++)
+            {
+                cout << arr[i][j];
+            }
+            cout << endl;
+        }
 
         cout << "А) ";
         for (int i = 0; i < *n; i++)
@@ -114,11 +140,21 @@ namespace iof
         cout << endl;
     }
 
-    void wirte_results_to_file(int *resultA, int *resultB, int *resultC, int *resultD, int *n)
+    void wirte_results_to_file(int **arr, int *resultA, int *resultB, int *resultC, int *resultD, int *n)
     {
         using namespace std;
 
         ofstream output("output.txt");
+
+        cout << "Исходная матрица:" << endl << endl;
+        for (int i = 0; i < *n; i++)
+        {
+            for (int j = 0; j < *n; j++)
+            {
+                cout << arr[i][j];
+            }
+            cout << endl;
+        }
 
         output << "А) ";
         for (int i = 0; i < *n; i++)
