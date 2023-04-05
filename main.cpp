@@ -7,7 +7,7 @@ int main()
     {
         using namespace std;
 
-        int *n;
+        int n;
 
         int **arr;
 
@@ -23,23 +23,23 @@ int main()
             if (*input_method == "файл" || *input_method == "Файл")
             {
                 correct_input = true;
-                arr = iof::read_matrix_from_file(n);
+                iof::read_matrix_from_file(n);
                 isreloadable = false;
             }
             else if (*input_method == "консоль" || *input_method == "Консоль")
             {
                 correct_input = true;    
-                arr = iof::read_matrix_from_console(n);
+                iof::read_matrix_from_console(n);
             }
             else
                 cout << "Обеспечьте корректный ввод." << endl;
         }
 
         delete input_method;
-        int *resultA = myf::compute_min_elements(arr, *n);
-        int *resultB = myf::find_first_positive(arr, *n);
-        int *resultC = myf::find_sum_after_negative(arr, *n);
-        int *resultD = myf::find_sum_before_negative(arr, *n);
+        int *resultA = myf::compute_min_elements(arr, n);
+        int *resultB = myf::find_first_positive(arr, n);
+        int *resultC = myf::find_sum_after_negative(arr, n);
+        int *resultD = myf::find_sum_before_negative(arr, n);
 
         string *output_method = new string;
 
@@ -81,15 +81,11 @@ int main()
                 else if (*answer == "Нет" || *answer == "нет")
                 {
                     correct_ans = true;
-                    for(int i = 0; i < *n; i++)
+                    for(int i = 0; i < n; i++)
                     {
                         delete[] arr[i];
                     }
                     delete[] arr;
-                    delete[] resultA;
-                    delete[] resultB;
-                    delete[] resultC;
-                    delete[] resultD;
                     return 0;
                 }
                 else
