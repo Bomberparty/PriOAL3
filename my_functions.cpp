@@ -69,7 +69,7 @@ namespace myf
         {
             int sum = 0;
             int last_negative_index = -1;
-            for (int j = n - 1; j >= 0; j--)
+            for (int j = n - 1; j > -1; j--)
             {
                 if (arr[i][j] < 0)
                 {

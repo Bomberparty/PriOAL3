@@ -23,13 +23,13 @@ int main()
             if (*input_method == "файл" || *input_method == "Файл")
             {
                 correct_input = true;
-                iof::read_matrix_from_file(n);
+                arr = iof::read_matrix_from_file(n);
                 isreloadable = false;
             }
             else if (*input_method == "консоль" || *input_method == "Консоль")
             {
                 correct_input = true;    
-                iof::read_matrix_from_console(n);
+                arr = iof::read_matrix_from_console(n);
             }
             else
                 cout << "Обеспечьте корректный ввод." << endl;

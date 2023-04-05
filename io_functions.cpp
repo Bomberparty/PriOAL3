@@ -3,6 +3,8 @@ namespace iof
 {
     bool isInt(std::string nval)
     {
+        if(nval == "")
+            return false;
         char *endptr;
         try
         {
