@@ -82,7 +82,7 @@ namespace iof
         }
 
         file >> n;
-        if (!file || n <= 0)
+        if (n <= 0)
         {
             throw std::runtime_error("Некорректный формат данных в файле. Исправьте содержимое файла и перезапустите программу.");
         }
@@ -93,26 +93,14 @@ namespace iof
             matrix[i] = new int[n];
             for (int j = 0; j < n; j++)
             {
-                std::string * nval = new std::string;
-                std::getline(file, *nval);
-                if(isInt(*nval))
+                try
                 {
-                    try
-                    {
-                        matrix[i][j] = stoi(*nval);
-                        break;
-                    }
-                    catch(const std::exception& e)
-                    {
-                        std::cout << "Введено некорректное значение! Повторите ввод." << std::endl;
-                        continue;   
-                    }
+                    file >> matrix[i][j];
                 }
-                else
+                catch(const std::exception& e)
                 {
-                    throw std::runtime_error("Некорректный формат данных в файле. Исправьте содержимое файла и перезапустите программу."); 
+                    throw std::runtime_error("Некорректное содержание файла. Проверьте файл и перезапустите программу");
                 }
-                delete nval;
             }
         }
 
@@ -132,6 +120,7 @@ namespace iof
             }
             cout << endl;
         }
+        cout << endl;
         cout << endl;
 
         cout << "А) ";
@@ -158,16 +147,16 @@ namespace iof
 
         ofstream output("output.txt");
 
-        cout << "Исходная матрица:" << endl << endl;
+        output << "Исходная матрица:" << endl << endl;
         for (int i = 0; i < n; i++)
         {
             for (int j = 0; j < n; j++)
             {
-                cout << arr[i][j] << " ";
+                output << arr[i][j] << " ";
             }
-            cout << endl;
+            output << endl;
         }
-        cout << endl;
+        output << endl;
 
         output << "А) ";
         for (int i = 0; i < n; i++)

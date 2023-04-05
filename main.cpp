@@ -91,6 +91,8 @@ int main()
                 else
                     cout << "Некорректный ответ на вопрос." << endl;
             }
+        }else {
+            return 0;
         }
     }
 }
